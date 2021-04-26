@@ -1,7 +1,7 @@
 class User {
-  int id_user;
+  int id;
   String name;
   String email;
 
-  User(this.id_user, this.name, this.email);
+  User(this.id, this.name, this.email);
 }

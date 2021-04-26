@@ -7,7 +7,7 @@ class Sale {
 
   Sale({this.customer, this.itens = const []});
 
-  DateTime get date_criation {
+  DateTime get dateCriation {
     return DateTime.now();
   }
 

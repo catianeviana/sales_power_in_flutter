@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 import '../models/custumer.dart';
 import '../models/product.dart';
@@ -10,9 +8,8 @@ main() {
   var sale = Sale(
       customer: Customer(
           name: 'Catiane',
-          cpf_cnpj: '123.456.789-72',
+          cpfCnpj: '123.456.789-72',
           phones: null,
-          id_address: 1,
           balance: 1.000),
       itens: <SaleItem>[
         SaleItem(

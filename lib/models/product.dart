@@ -1,9 +1,10 @@
 class Product {
-  int id_product;
+
+  int id;
   String description;
   int stock;
   double price;
   List fotos;
 
-  Product({this.id_product, this.description, this.stock, this.price});
+  Product({this.id, this.description, this.stock, this.price});
 }
