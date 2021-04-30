@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_power/components/appbbar_default.dart';
 import 'package:sales_power/screens/custumer/list.dart';
+import 'package:sales_power/screens/product/list.dart';
 
 class Dashboard extends StatelessWidget {
   @override
@@ -18,7 +19,8 @@ class Dashboard extends StatelessWidget {
                 //color: Theme.of(context).accentColor,
                 child: InkWell(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => CustumerlistView(),
+                   // Navigator.of(context).push(MaterialPageRoute(builder: (context) => CustumerlistView(),
+                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => ListOfProducts(),
                     ));
 
                   },

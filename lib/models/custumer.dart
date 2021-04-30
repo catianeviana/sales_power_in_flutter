@@ -1,4 +1,5 @@
 import 'package:sales_power/models/address.dart';
+import 'package:sales_power/models/product.dart';
 
 class Customer {
   String name;
@@ -16,4 +17,5 @@ class Customer {
     else
       return this.name.split(' ').first.substring(0,2).toUpperCase();
   }
+
 }
