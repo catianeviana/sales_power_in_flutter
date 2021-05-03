@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sales_power/screens/Dashboard.dart';
+import 'package:sales_power/routes/app_route.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      statusBarBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.light,
       statusBarColor: Colors.transparent,
       systemNavigationBarColor: Colors.indigoAccent.shade700,
     ),
   );
-
-  runApp(SalesPowerApp());
+  runApp(
+    MyApp(),
+  );
 }
 
-class SalesPowerApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Dashboard(),
-      debugShowCheckedModeBanner: false,
       title: 'Sales Power',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.indigoAccent.shade400,
         primaryColorDark: Colors.indigoAccent.shade700,
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
       ),
+      initialRoute: '/',
+      onGenerateRoute: AppRouteGenerator.generateRoute,
     );
   }
 }

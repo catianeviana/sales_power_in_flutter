@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cviana.tsilva.sales_power">
+    package="com.poc.sales_power">
    <application
         android:label="Sales Power"
         android:icon="@mipmap/ic_launcher">
