@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'button_shopping_cart.dart';
+import 'logo.dart';
 
 class AppBarDefault extends StatelessWidget with PreferredSizeWidget {
   final String titulo;
@@ -12,13 +12,13 @@ class AppBarDefault extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       title: (Text(
         titulo,
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(color: Colors.white),
       )),
-      backgroundColor: Colors.transparent,
+      backgroundColor: Theme.of(context).primaryColor,
       elevation: 0.0,
       centerTitle: true,
       actions: <Widget>[
-        ButtonShoppingCart(),
+      //  StateLogo(),
       ],
     );
   }
