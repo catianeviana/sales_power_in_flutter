@@ -8,19 +8,13 @@ class Customer {
   List<Address> address;
   double balance;
 
-  Customer(
-      {this.name,
-      this.cpfCnpj,
-      this.phones,
-      this.address,
-      this.balance,
-      this.email});
+  Customer({this.name, this.cpfCnpj, this.phones, this.address, this.balance, this.email});
 
-  String initial() {
+  String initial(){
     if (this.name.split(' ').length > 1)
-      return this.name.split(' ').first.substring(0, 1).toUpperCase() +
-          this.name.split(' ').last.substring(0, 1).toUpperCase();
+      return   this.name.split(' ').first.substring(0,1).toUpperCase() +  this.name.split(' ').last.substring(0,1).toUpperCase() ;
     else
-      return this.name.split(' ').first.substring(0, 2).toUpperCase();
+      return this.name.split(' ').first.substring(0,2).toUpperCase();
   }
+
 }
