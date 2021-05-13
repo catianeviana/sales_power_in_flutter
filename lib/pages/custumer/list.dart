@@ -1,50 +1,45 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_power/models/custumer.dart';
+import 'package:sales_power/models/customer.dart';
 
 import 'detail.dart';
 
-class CustumerListPage extends StatefulWidget {
+class CustomerListPage extends StatefulWidget {
   @override
   _CustumerlistViewState createState() => _CustumerlistViewState();
 }
 
-class _CustumerlistViewState extends State<CustumerListPage> {
-  var custumers = <Customer>[];
+class _CustumerlistViewState extends State<CustomerListPage> {
+  List<Customer> items;
+  var db = FirebaseFirestore.instance;
 
-  _getCustomers() {
-    var jsonData = [
-      {
-        "name": "Marilia Souza Viana",
-        "email": "maria@gmail.com",
-        "balance": 300.0,
-        "cpfCnpj": "112.233.236-52",
-      },
-      {
-        "name": "João Souza Viana",
-        "email": "joao@gmail.com",
-        "cpfCnpj": "112.233.236-52",
-        "balance": 120.0,
-      },
-      {
-        "name": "Aparecida Souza Pedroza",
-        "email": "aparecida@gmail.com",
-        "cpfCnpj": "112.233.236-52",
-        "balance": 900.0,
-      }
-    ];
-    for (var index in jsonData) {
-      Customer customer = Customer(
-          name: index["name"],
-          email: index["email"],
-          balance: index["balance"],
-          cpfCnpj: index["cpfCnpj"]);
+  StreamSubscription<QuerySnapshot> customerInstance;
 
-      custumers.add(customer);
-    }
+  @override
+  void initState() {
+    super.initState();
+
+    items = [];
+    customerInstance?.cancel();
+
+    customerInstance = db.collection("customer").snapshots().listen((snapshot) {
+      final List<Customer> customer = snapshot.docs
+          .map(
+            (documentSnapshot) => Customer.fromJson(documentSnapshot.data()),
+          )
+          .toList();
+      setState(() {
+        this.items = customer;
+      });
+    });
   }
 
-  _CustumerlistViewState() {
-    _getCustomers();
+  @override
+  void dispose() {
+    customerInstance.cancel();
+    super.dispose();
   }
 
   @override
@@ -53,36 +48,57 @@ class _CustumerlistViewState extends State<CustumerListPage> {
       appBar: AppBar(
         title: Text('Lista de Clientes'),
       ),
-      body: listOfCustumer(),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+            stream: getListOfCustomer(),
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                case ConnectionState.waiting:
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                default:
+                  List<DocumentSnapshot> documents = snapshot.data.docs;
+                  return ListView.builder(
+                      itemCount: items.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.tealAccent,
+                            //border color
+                            child: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              //border size
+                              child: CircleAvatar(
+                                  backgroundColor: Colors.blueAccent,
+                                  child: Text(items[index].initial())),
+                            ),
+                          ),
+                          title: Text(items[index].name,
+                              style: TextStyle(
+                                  fontSize: 20.0, color: Colors.black)),
+                          subtitle: Text(items[index].subTitle()),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                new MaterialPageRoute(
+                                    builder: (context) =>
+                                        CustomerDetailPage(items[index])));
+                          },
+                        );
+                      });
+              }
+            },
+          ))
+        ],
+      ),
     );
   }
 
-  listOfCustumer() {
-    return ListView.builder(
-      itemCount: custumers.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          leading: CircleAvatar(
-            backgroundColor: Colors.tealAccent, //border color
-            child: Padding(
-              padding: const EdgeInsets.all(3.0), //border size
-              child: CircleAvatar(
-                  backgroundColor: Colors.blueAccent,
-                  child: Text(custumers[index].initial())),
-            ),
-          ),
-          title: Text(custumers[index].name,
-              style: TextStyle(fontSize: 20.0, color: Colors.black)),
-          subtitle: Text('Limite: ' + custumers[index].balance.toString()),
-          onTap: () {
-            Navigator.push(
-                context,
-                new MaterialPageRoute(
-                    builder: (context) =>
-                        CustomerDetailPage(custumers[index])));
-          },
-        );
-      },
-    );
+  Stream<QuerySnapshot> getListOfCustomer() {
+    return FirebaseFirestore.instance.collection("customer").snapshots();
   }
 }

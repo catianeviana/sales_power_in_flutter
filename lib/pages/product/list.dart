@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:sales_power/components/appbbar_default.dart';
 import 'package:sales_power/models/product.dart';
-import 'package:sales_power/pages/product/form.dart';
-import 'package:sales_power/pages/product/textDetail.dart';
 
 class ListOfProducts extends StatefulWidget {
   @override
@@ -53,50 +51,50 @@ class _ListOfProductsState extends State<ListOfProducts> {
         titulo: 'Lista de Produtos',
       ),
       body: Column(
-        children: <Widget>[
-          Expanded(
-              child: StreamBuilder<QuerySnapshot>(
-            stream: getListOfProducts(),
-            builder: (context, snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.none:
-                case ConnectionState.waiting:
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                default:
-                  List<DocumentSnapshot> documents = snapshot.data.docs;
-                  return ListView.builder(
-                      itemCount: items.length,
-                      itemBuilder: (context, index) {
-                        return ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Container(
-                              margin: EdgeInsets.only(left: 4, top: 1, right: 4, bottom: 1),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.blueAccent,
-                                    spreadRadius: 5,
-                                    blurRadius: 7,
-                                    offset: Offset(
-                                        0, 3), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              child: ListTile(
-                                title: Text(items[index].description),
-                                subtitle: Text(items[index].subTitle()),
-                                leading: Icon(Icons.shopping_cart),
-                              )),
-                        );
-                      });
-              }
-            },
-          ))
-        ],
-      ),
+      children: <Widget>[
+        Expanded(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: getListOfProducts(),
+              builder: (context, snapshot) {
+                switch (snapshot.connectionState) {
+                  case ConnectionState.none:
+                  case ConnectionState.waiting:
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  default:
+                    List<DocumentSnapshot> documents = snapshot.data.docs;
+                    return ListView.builder(
+                        itemCount: items.length,
+                        itemBuilder: (context, index) {
+                          return ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Container(
+                                margin: EdgeInsets.only(left: 4, top: 1, right: 4, bottom: 1),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.blueAccent,
+                                      spreadRadius: 5,
+                                      blurRadius: 7,
+                                      offset: Offset(
+                                          0, 3), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
+                                child: ListTile(
+                                  title: Text(items[index].description),
+                                  subtitle: Text(items[index].subTitle()),
+                                  leading: Icon(Icons.shopping_cart),
+                                )),
+                          );
+                        });
+                }
+              },
+            ))
+      ],
+    ),
     );
   }
 

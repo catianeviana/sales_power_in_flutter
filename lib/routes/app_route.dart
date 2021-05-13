@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_power/models/custumer.dart';
+import 'package:sales_power/models/customer.dart';
 import 'package:sales_power/pages/account/login_page.dart';
 import 'package:sales_power/pages/custumer/detail.dart';
 import 'package:sales_power/pages/custumer/list.dart';
@@ -19,7 +19,7 @@ class AppRouteGenerator {
       case '/main':
         return MaterialPageRoute(builder: (_) => MainPage());
       case '/custumer-list':
-        return MaterialPageRoute(builder: (_) => CustumerListPage());
+        return MaterialPageRoute(builder: (_) => CustomerListPage());
       case '/custumer-detail':
         // Validation of correct data type
         if (args is Customer) {

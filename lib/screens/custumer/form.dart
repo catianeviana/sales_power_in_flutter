@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_power/models/custumer.dart';
+import 'package:sales_power/models/customer.dart';
 
 class CustomerDetailPage extends StatelessWidget {
   final Customer customer;
@@ -12,11 +12,11 @@ class CustomerDetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(customer.name),
       ),
-      body: CustomerDetail(),
+      body: customerDetail(),
     );
   }
 
-  CustomerDetail() {
+  customerDetail() {
     return ListView(
       children: [
         Card(

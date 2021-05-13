@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_power/models/custumer.dart';
+import 'package:sales_power/models/customer.dart';
 
 class CustomerDetailPage extends StatelessWidget {
   final Customer customer;
@@ -12,11 +12,11 @@ class CustomerDetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(customer.name),
       ),
-      body: CustomerDetail(),
+      body: customerDetail(),
     );
   }
 
-  CustomerDetail() {
+  customerDetail() {
     return ListView(
       children: [
         Card(
@@ -30,7 +30,20 @@ class CustomerDetailPage extends StatelessWidget {
             title: Text('Email'),
               subtitle: Text(customer.email, style: TextStyle(fontWeight: FontWeight.w500)),
           ),
+        ),
+        Card(
+          child: ListTile(
+            title: Text('Limite'),
+            subtitle: Text(customer.formatbalance(), style: TextStyle(fontWeight: FontWeight.w500)),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: Text('Endereço'),
+            subtitle: Text(customer.address, style: TextStyle(fontWeight: FontWeight.w500)),
+          ),
         )
+
       ],
 
     );

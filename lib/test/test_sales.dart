@@ -1,5 +1,5 @@
 
-import '../models/custumer.dart';
+import '../models/customer.dart';
 import '../models/product.dart';
 import '../models/sale.dart';
 import '../models/sale_item.dart';
@@ -9,7 +9,6 @@ main() {
       customer: Customer(
           name: 'Catiane',
           cpfCnpj: '123.456.789-72',
-          phones: null,
           balance: 1.000),
       itens: <SaleItem>[
         SaleItem(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_power/models/custumer.dart';
+import 'package:sales_power/models/customer.dart';
 
 import 'form.dart';
 
