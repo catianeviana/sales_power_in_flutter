@@ -31,7 +31,7 @@ class AppRouteGenerator {
         // You can also throw an exception while in development.
         return _errorRoute('${settings.name}: Parâmetros incorretos');
       case '/product-list':
-        return MaterialPageRoute(builder: (_) => ProductListPage());
+        return MaterialPageRoute(builder: (_) => ListOfProducts());
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return _notFoundRoute(settings.name);

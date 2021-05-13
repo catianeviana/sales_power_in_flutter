@@ -1,23 +1,41 @@
+
 import 'package:intl/intl.dart';
+import 'dart:convert';
+
+import 'package:sales_power/pages/product/textDetail.dart';
+
+Product productFromJson(String str) => Product.fromJson(json.decode(str));
+
+String productToJson(Product data) => json.encode(data.toJson());
 
 class Product {
-  int id;
+  Product({
+    this.description,
+    this.stock,
+    this.price,
+  });
+
   String description;
   int stock;
   double price;
-  String fotoMain;
 
-  Product({this.id, this.description, this.stock, this.price, this.fotoMain});
+  factory Product.fromJson(Map<String, dynamic> json) => Product(
+        description: json["description"],
+        stock: json["stock"],
+        price: json["price"].toDouble(),
+      );
 
-  Product.fromJson(Map<String, dynamic> json) {
-    description = json['description'];
-    stock = json['stock'];
-    price = json['price'];
-    fotoMain = json['fotoMain'];
+  Map<String, dynamic> toJson() => {
+        "description": description,
+        "stock": stock,
+        "price": price,
+      };
+
+  String formatPrice(double price) {
+    final realFormat = NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
+    return realFormat.format(price);
   }
-}
-
-String formatPrice(double price) {
-  final realFormat = NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
-  return realFormat.format(price);
+  String subTitle(){
+    return 'Preço : '+formatPrice(price)  + '    Estoque : '+stock.toString();
+  }
 }

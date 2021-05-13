@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_power/components/appbbar_default.dart';
 import 'package:sales_power/screens/custumer/list.dart';
-import 'package:sales_power/screens/product/list.dart';
+import 'package:sales_power/pages/product/list.dart';
 import 'package:sales_power/screens/sale/list.dart';
 
 class Dashboard extends StatelessWidget {
