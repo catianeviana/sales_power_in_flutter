@@ -44,6 +44,13 @@ class _MenuBottomState extends State<MenuBottom> {
                     scrollDirection: Axis.horizontal,
                     children: <Widget>[
                       MenuItemBottom(
+                        icon: Icons.add_shopping_cart,
+                        text: 'Pedidos',
+                        event: () => {
+                          Navigator.pushNamed(context, '/sales-list'),
+                        },
+                      ),
+                      MenuItemBottom(
                         icon: Icons.person,
                         text: 'Clientes',
                         event: () => {
@@ -56,11 +63,7 @@ class _MenuBottomState extends State<MenuBottom> {
                         event: () => {
                           Navigator.pushNamed(context, '/product-list'),
                         },
-                      ),
-                      MenuItemBottom(
-                        icon: Icons.menu,
-                        text: 'Menu 3',
-                      ),
+                      ),                      
                       MenuItemBottom(
                         icon: Icons.menu,
                         text: 'Menu 4',

@@ -10,15 +10,21 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  List<charts.Series> seriesList;
+  List<charts.Series<LinearSales, int>> seriesList;
   bool animate;
 
   _createSampleData() {
     final data = [
-      new LinearSales(0, 100),
-      new LinearSales(1, 75),
-      new LinearSales(2, 25),
-      new LinearSales(3, 5),
+      new LinearSales(1, 840),
+      new LinearSales(2, 547),
+      new LinearSales(3, 687),
+      new LinearSales(4, 987),
+      new LinearSales(5, 1240),
+      new LinearSales(6, 520),
+      new LinearSales(7, 487),
+      new LinearSales(8, 877),
+      new LinearSales(9, 1500),
+      new LinearSales(10, 1147),
     ];
 
     animate = true;
@@ -26,11 +32,11 @@ class _MainPageState extends State<MainPage> {
     seriesList = [
       new charts.Series<LinearSales, int>(
         id: 'Sales',
-        domainFn: (LinearSales sales, _) => sales.year,
+        domainFn: (LinearSales sales, _) => sales.day,
         measureFn: (LinearSales sales, _) => sales.sales,
         data: data,
         // Set a label accessor to control the text of the arc label.
-        labelAccessorFn: (LinearSales row, _) => '${row.year}: ${row.sales}',
+        labelAccessorFn: (LinearSales row, _) => '${row.day}: ${row.sales}',
       )
     ];
   }
@@ -117,7 +123,7 @@ class _MainPageState extends State<MainPage> {
                         ),
                         Text('Total de Clientes',
                             style: TextStyle(color: Colors.black54)),
-                        Text('1500',
+                        Text('2',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w700,
@@ -142,7 +148,7 @@ class _MainPageState extends State<MainPage> {
                             )),
                         Text('Produtos',
                             style: TextStyle(color: Colors.black54)),
-                        Text('8000',
+                        Text('2000',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w700,
@@ -153,13 +159,11 @@ class _MainPageState extends State<MainPage> {
               _buildTile(
                 Padding(
                   padding: const EdgeInsets.all(24.0),
-                  child: charts.PieChart(
+                  child: charts.LineChart(
                     seriesList,
                     animate: animate,
-                    defaultRenderer: new charts.ArcRendererConfig(
-                      arcWidth: 60,
-                      arcRendererDecorators: [new charts.ArcLabelDecorator()],
-                    ),
+                    defaultRenderer: new charts.LineRendererConfig(
+                        includeArea: true, stacked: true),
                   ),
                 ),
               ),
@@ -185,8 +189,8 @@ class _MainPageState extends State<MainPage> {
 }
 
 class LinearSales {
-  final int year;
+  final int day;
   final int sales;
 
-  LinearSales(this.year, this.sales);
+  LinearSales(this.day, this.sales);
 }

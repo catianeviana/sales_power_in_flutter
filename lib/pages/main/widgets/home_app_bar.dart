@@ -14,7 +14,7 @@ class HomeAppBar extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: Text(
-                    "Olá, Mária",
+                    "Olá, Fulano",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 28,

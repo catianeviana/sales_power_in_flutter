@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'logo.dart';
-
 class AppBarDefault extends StatelessWidget with PreferredSizeWidget {
   final String titulo;
 

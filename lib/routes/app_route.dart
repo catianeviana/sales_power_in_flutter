@@ -5,6 +5,7 @@ import 'package:sales_power/pages/custumer/detail.dart';
 import 'package:sales_power/pages/custumer/list.dart';
 import 'package:sales_power/pages/main/main_page.dart';
 import 'package:sales_power/pages/product/list.dart';
+import 'package:sales_power/pages/sales/SalesPage.dart';
 import 'package:sales_power/pages/splash/splash_page.dart';
 
 class AppRouteGenerator {
@@ -32,6 +33,8 @@ class AppRouteGenerator {
         return _errorRoute('${settings.name}: Parâmetros incorretos');
       case '/product-list':
         return MaterialPageRoute(builder: (_) => ListOfProducts());
+      case '/sales-list':
+        return MaterialPageRoute(builder: (_) => SalesListPage());
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return _notFoundRoute(settings.name);
